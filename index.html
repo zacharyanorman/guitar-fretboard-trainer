@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guitar Fretboard Note Trainer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2rem;
+      background-color: #f9f9f9;
+    }
+
+    #note-display {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    button {
+      font-size: 1.2rem;
+      margin: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #fretboard {
+      margin-top: 2rem;
+      display: inline-block;
+      border-collapse: collapse;
+    }
+
+    #fretboard td {
+      border: 1px solid #ccc;
+      width: 40px;
+      height: 30px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .highlight {
+      background-color: gold;
+      font-weight: bold;
+    }
+
+    .glow {
+      background-color: gold;
+      color: black;
+      box-shadow: 0 0 10px gold;
+    }
+
+    .string-label {
+      font-weight: bold;
+      background-color: #eee;
+    }
+
+    .toggle-group {
+      margin: 1rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .toggle-label {
+      font-size: 1rem;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 22px;
+      margin-left: 8px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 22px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: #007bff;
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(18px);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="note-display">🎯 Play: ?</div>
+  <div class="toggle-group" id="string-toggles"></div>
+
+  <div class="toggle-group">
+    <label class="toggle-label">Whole Notes Only
+      <label class="switch">
+        <input type="checkbox" id="whole-notes-only">
+        <span class="slider"></span>
+      </label>
+    </label>
+    <label class="toggle-label">Show Fretboard
+      <label class="switch">
+        <input type="checkbox" id="show-fretboard" checked>
+        <span class="slider"></span>
+      </label>
+    </label>
+  </div>
+
+  <div>
+    <button id="next-button">🎲 Next Note</button>
+    <button id="repeat-button">🔁 Repeat Note</button>
+  </div>
+
+  <div style="margin-top: 1rem;">
+    <label for="practice-mins">Practice time (mins): </label>
+    <input type="number" id="practice-mins" value="1" min="1" style="width: 50px;">
+    <button id="start-practice">▶️ Start Practice</button>
+    <span id="timer-display" style="margin-left: 1rem; font-weight: bold;"></span>
+  </div>
+
+  <table id="fretboard"></table>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
